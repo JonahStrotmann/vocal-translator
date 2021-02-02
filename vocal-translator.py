@@ -49,7 +49,7 @@ def save(translated_string):
     if(output_file != ""):
         ofile = open(output_file, 'w')
         ofile.write(translated)
-    sys.exit(0)
+        sys.exit(0)
 
 if(input_file != ""):
     translated = ""
