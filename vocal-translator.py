@@ -25,7 +25,8 @@ def translate_sentence(sentence):
     return sentence
 
 def show_help():
-    pass
+    print('-f for the input file -o for the output file. To exit the program just type in "exit"')
+    sys.exit(0)
 
 
 output_file = ""
@@ -48,6 +49,7 @@ def save(translated_string):
     if(output_file != ""):
         ofile = open(output_file, 'w')
         ofile.write(translated)
+    sys.exit(0)
 
 if(input_file != ""):
     translated = ""
