@@ -1,4 +1,4 @@
-import sys
+import sys, getopt
 
 
 def translate_sentence(sentence):
@@ -24,9 +24,47 @@ def translate_sentence(sentence):
     
     return sentence
 
+def show_help():
+    pass
+
+
+output_file = ""
+input_file = ""
+
+opts, rest = getopt.getopt(sys.argv[1:], "hf:o:")
+
+for opt, arg in opts:
+    if opt == '-h':
+        show_help();
+    if opt == '-o':
+        output = True
+        output_file = arg
+    if opt == '-f':
+        input_file = arg
+
+
+
+def save(translated_string):
+    if(output_file != ""):
+        ofile = open(output_file, 'w')
+        ofile.write(translated)
+
+if(input_file != ""):
+    translated = ""
+    ifile = open(input_file, 'r')
+    translated_lines = []
+    for line in ifile:
+        translated += translate_sentence(line)
+    save(translated)
+    sys.exit(0)
+
+
 while True:
-    sentence = input("please insert sentence here: ")
-    if(sentence == "exit"):
-        sys.exit(0)
-    translated_sentence = translate_sentence(sentence)
-    print(translated_sentence)
+    if(input_file == ""):
+        translated = ""
+        sentence = input("please insert sentence here: ")
+        if(sentence == "exit"):
+            sys.exit(0)
+        translated = translate_sentence(sentence)
+        print(translated)
+        save(translated)
